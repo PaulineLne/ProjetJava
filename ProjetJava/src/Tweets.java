@@ -3,49 +3,81 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Tweets implements Comparable,Serializable {
-	private String id;
+	private Integer id;
     // date de publication
     private LocalDate date;
+    private String utilisateur;
     // l'auteur si disponible
     private String texte;
     // la source
     private String rtid;
     
     //Constructeur
-    public Tweets(String id,LocalDate date,String texte, String rtid)
+    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtid)
     {
     	this.id=id;
     	this.date=date;
+    	this.utilisateur=utilisateur;
 		this.texte=texte;
 		this.rtid=rtid;
     }
     
-    
-    //Getter et Setter
-    public String getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(String id) {
+
+
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
 
 	public LocalDate getDate() {
 		return date;
 	}
+
+
+
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
+
+
+	public String getUtilisateur() {
+		return utilisateur;
+	}
+
+
+
+	public void setUtilisateur(String utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+
+
 	public String getTexte() {
 		return texte;
 	}
+
+
+
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
 
+
+
 	public String getRtid() {
 		return rtid;
 	}
+
+
+
 	public void setRtid(String rtid) {
 		this.rtid = rtid;
 	}

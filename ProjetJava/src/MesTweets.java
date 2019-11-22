@@ -47,7 +47,7 @@ public class MesTweets {
                     break;                    
                 case 4: affichage();
                     break;    
-                case 5: insererNews();
+                case 5: insererTweets();
                     break;
                 case 6: suppression();
                     break;
@@ -66,21 +66,25 @@ public class MesTweets {
     }
     
     //Appel à l'insertion d'une news
-    public static void insererNews(Tweets t)
+    public static void insererTweets(Tweets t)
     {
-        collec.insertNews(t);
+        collec.insertTweets(t);
     }
     
     //Collecte des informations + insertion
-    public static void insererNews()
+    public static void insererTweets()
     {
     	Scanner scanti = new Scanner(System.in);
-        System.out.print("Veuillez entrer un titre : ");
-        String title = scanti.nextLine();
+        System.out.print("Veuillez entrer un id : ");
+        Integer id = scanti.nextInt();
         
-        Scanner scana = new Scanner(System.in);
-        System.out.print("Veuillez entrer un nom d'auteur : ");
-        String author = scana.nextLine();
+        Scanner scanu = new Scanner(System.in);
+        System.out.print("Veuillez entrer un nom d'utilisateur : ");
+        String utilisateur = scanu.nextLine();
+        
+        Scanner scant = new Scanner(System.in);
+        System.out.print("Veuillez entrer le contenu du tweet : ");
+        String texte = scant.nextLine();
         
         Scanner scand = new Scanner(System.in);
         System.out.print("Veuillez entrer une date au format jj-mm-aaaa : ");
@@ -92,18 +96,12 @@ public class MesTweets {
         {
             date = LocalDate.parse(d, formatter);
         } catch (DateTimeParseException e) { }
-        System.out.print("Veuillez entrer L'url source : ");
-        String url = scand.nextLine();
-        URL formattedurl = null;
-        try {
-            formattedurl = new URL(url);
-        } catch (MalformedURLException me)
-        {
-            System.out.println("erreur");
-        }
+       
+        Scanner scanr = new Scanner(System.in);
+        System.out.print("Veuillez entrer un nom d'utilisateur retweeté : ");
+        String rtid = scanr.nextLine();
         
-        
-        //News n = new News(title, author, date, formattedurl);
+        Tweets t=new Tweets(id,date,utilisateur,texte,rtid);
         
     }    
     

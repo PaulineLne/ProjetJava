@@ -19,7 +19,7 @@ private TreeSet<Tweets> liste;
     }
    
     //Insertion dans le Treeset
-    public void insertNews(Tweets t)
+    public void insertTweets(Tweets t)
     {
         liste.add(t);
     }

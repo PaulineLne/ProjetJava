@@ -1,8 +1,7 @@
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Tweets implements Comparable,Serializable {
+public class Tweets implements Comparable<Tweets> {
 	private Integer id;
     // date de publication
     private LocalDate date;
@@ -10,16 +9,16 @@ public class Tweets implements Comparable,Serializable {
     // l'auteur si disponible
     private String texte;
     // la source
-    private String rtid;
+    private String rtutilisateur;
     
     //Constructeur
-    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtid)
+    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtutilisateur)
     {
     	this.id=id;
     	this.date=date;
     	this.utilisateur=utilisateur;
 		this.texte=texte;
-		this.rtid=rtid;
+		this.rtutilisateur=rtutilisateur;
     }
     
 
@@ -72,20 +71,20 @@ public class Tweets implements Comparable,Serializable {
 
 
 
-	public String getRtid() {
-		return rtid;
+	public String getrtutilisateur() {
+		return rtutilisateur;
 	}
 
 
 
-	public void setRtid(String rtid) {
-		this.rtid = rtid;
+	public void setrtutilisateur(String rtutilisateur) {
+		this.rtutilisateur = rtutilisateur;
 	}
 
 
 
 	//Fonction de comparaison pour le Treeset
-    public int compareTo(Object arg0) {
+    public int compareTo(Tweets arg0) {
             // On transtype arg0 (de type Object) en Film :
             Tweets n = (Tweets)arg0;
 
@@ -103,10 +102,11 @@ public class Tweets implements Comparable,Serializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDateTime = getDate().format(formatter);
         
-        String affich =  "Nom d'utilisateur : " + getId() + "\n";
+        String affich = "Numéro de tweet : "+ getId() + "\n";
+        affich +=  "Nom d'utilisateur : " + getUtilisateur() + "\n";
         affich +=  "Contenu : " + getTexte() + "\n";
         affich +=  "Date : " + formattedDateTime + "\n";
-        affich +=  "Nom de l'utilisateur retweeté : " + getRtid() + "\n";
+        affich +=  "Nom de l'utilisateur retweeté : " + getrtutilisateur() + "\n";
 
         return affich;	
     }
@@ -114,4 +114,3 @@ public class Tweets implements Comparable,Serializable {
     
     
 }
-

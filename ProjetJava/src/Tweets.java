@@ -26,20 +26,14 @@ public class Tweets implements Comparable<Tweets> {
 	public Integer getId() {
 		return id;
 	}
-
-
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-
-
 	public LocalDate getDate() {
 		return date;
 	}
-
-
 
 	public void setDate(LocalDate date) {
 		this.date = date;
@@ -51,37 +45,25 @@ public class Tweets implements Comparable<Tweets> {
 		return utilisateur;
 	}
 
-
-
 	public void setUtilisateur(String utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-
-
 
 	public String getTexte() {
 		return texte;
 	}
 
-
-
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
-
-
 
 	public String getrtutilisateur() {
 		return rtutilisateur;
 	}
 
-
-
 	public void setrtutilisateur(String rtutilisateur) {
 		this.rtutilisateur = rtutilisateur;
 	}
-
-
 
 	//Fonction de comparaison pour le Treeset
     public int compareTo(Tweets arg0) {
@@ -110,7 +92,5 @@ public class Tweets implements Comparable<Tweets> {
 
         return affich;	
     }
-    
-    
-    
+     
 }

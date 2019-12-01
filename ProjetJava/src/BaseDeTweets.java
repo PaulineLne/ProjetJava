@@ -20,15 +20,6 @@ public class BaseDeTweets implements Serializable {
     {
 	liste = new TreeSet<Tweets>();
     }
-   
-    //Insertion dans le Treeset
-    public void insertTweets(Tweets t)
-    {
-        liste.add(t);
-    }
-    
-
-
     	
     	//Importation d'un Treeset
     	@SuppressWarnings("unchecked")

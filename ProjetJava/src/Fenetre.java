@@ -37,9 +37,7 @@ public class Fenetre extends Application {
 	Label label1 = new Label("");
 	TextField text1 = new TextField();
 	text1.setText("");
-	
-	
-	
+
 	
 	Button button1 = new Button("Bouton1");
 	button1.setText("Rechercher");
@@ -52,14 +50,37 @@ public class Fenetre extends Application {
 	}
 	});
 	
-
+	Button button2 = new Button("Bouton2");
+	button2.setText("Foot");
+	button2.setOnAction(new EventHandler<ActionEvent>()
+	{
+	public void handle(ActionEvent event)
+	{
+		MesTweets.creationBase();
+		MesTweets.ouvrirBase("foot.txt");
+	}
+	});
+	
+	Button button3 = new Button("Bouton3");
+	button3.setText("Climat");
+	button3.setOnAction(new EventHandler<ActionEvent>()
+	{
+	public void handle(ActionEvent event)
+	{
+		MesTweets.creationBase();
+		MesTweets.ouvrirBase("climat.txt");
+	}
+	});
 	
 	
 	HBox hBox1 = new HBox(10);
+	HBox hBox2 = new HBox(10);
 	//hBox.getChildren().addAll(label, textField, button1);
 
-	hBox1.getChildren().addAll(label1,text1,button1);
+	hBox1.getChildren().addAll(button2,button3);
+	hBox2.getChildren().addAll(label1,text1,button1);
 
+	
 	Text text = new Text("Mon premier texte");
 	Separator separator = new Separator();
 	/*GridPane.setConstraints(menuBar, 0, 0);
@@ -72,22 +93,24 @@ public class Fenetre extends Application {
 	grid.getChildren().add(text);
 	StackPane root = new StackPane();
 	root.getChildren().addAll(grid);
-	Scene scene = new Scene(root, 500, 300);
+	Scene scene = new Scene(root, 500, 300, Color.RED);
 	// Scene scene = new Scene(root);
 	return scene;
 	}
+	
 public void start(Stage primaryStage)
 {
 Stage myStage = primaryStage;
-primaryStage.setTitle("Ma première fenêtre");
+primaryStage.setTitle("Faire une recherche");
 primaryStage.setScene(construitScene());
 primaryStage.sizeToScene();
 primaryStage.show();
 }
+
 public static void main(String[] args)
 {
-	MesTweets.creationBase();
-	MesTweets.ouvrirBase();
+	//MesTweets.creationBase();
+	//MesTweets.ouvrirBase();
 	launch(args);
 }
 

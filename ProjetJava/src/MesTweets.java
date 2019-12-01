@@ -6,11 +6,9 @@ public class MesTweets {
 
     //Programme principal
     public static void main(String[] args) {
-    	creationBase();
-    	ouvrirBase();
+    	//creationBase();
+    	//ouvrirBase();
     }
-    
-  
     
     //Création d'une base
     public static void creationBase()
@@ -18,28 +16,25 @@ public class MesTweets {
         collec = new BaseDeTweets();
     }
     
-
-    
     //Affichage de la base
-    public static void affichage()
+   /* public static void affichage()
     {
         System.out.println(collec);
     }
-
+    */
+    
     //Récupération d'une base
-    public static void ouvrirBase() {
-        System.out.println(" --- Chargement de la base: Foot --- ");
+    public static void ouvrirBase(String base) {
+        System.out.println(" --- Chargement de la base: --- ");
         //Scanner scan = new Scanner(System.in);
         //System.out.print("Veuillez entrer le nom pour la base : ");
         //String nom = scan.nextLine();
-        collec.lecture("Foot.txt");
+        collec.lecture(base);
     }
-
    
     //Requêtage
     public static void rechercher(String recherche)
     {
-    	
     	//Scanner scan = new Scanner(System.in);
         //System.out.println("Votre requête : ");
         //String mot = scan.nextLine();

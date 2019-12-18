@@ -6,14 +6,20 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class BaseDeTweets implements Serializable {
-	private TreeSet<Tweets> liste;
+	private static TreeSet<Tweets> liste;
     
     //Création d'un Treeset de News
     public BaseDeTweets()
@@ -85,28 +91,112 @@ public class BaseDeTweets implements Serializable {
     private static Pattern patterns;
     private static Matcher matchers;
     private Integer nombre;
-    public void recherche(String mot) {
+    public static ObservableList<Tweets> recherche(String mot,Integer id) {
+    	ObservableList <Tweets> list=FXCollections.observableArrayList();
     	patterns=Pattern.compile(mot);
     	System.out.println(patterns);
-    	nombre=0;
     	Iterator<Tweets> iter=liste.iterator();
         while(iter.hasNext())
         {
             Tweets t = iter.next();
-            
-                	String champ = String.valueOf(t);
+            switch(id) {
+            	case 1:
+                	String champ1 = String.valueOf(t);
                 	//System.out.println(champ);
-                    matchers=patterns.matcher(champ);
+                    matchers=patterns.matcher(champ1);
                     if (matchers.find()) {
-                    	System.out.println(t);
-                    	nombre=nombre+1;
+                    	list.add(t);
                     }
+                break;
+            	case 2:
+            		String champ2 = t.getUtilisateur();
+                	//System.out.println(champ);
+                    matchers=patterns.matcher(champ2);
+                    if (matchers.find()) {
+                    	list.add(t);
+                    }
+                break;
+            	case 3:
+            		String champ3 = t.getRtutilisateur();
+                	//System.out.println(champ);
+                    matchers=patterns.matcher(champ3);
+                    if (matchers.find()) {
+                    	list.add(t);
+                    }
+                break;
+            	case 4:
+            		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String formattedDateTime = t.getDate().format(formatter);
+            		String champ4 = formattedDateTime;
+                	//System.out.println(champ);
+                    matchers=patterns.matcher(champ4);
+                    if (matchers.find()) {
+                    	list.add(t);
+                    }
+                break;
+            		
+            }
             
         }
-        if(nombre==0) {
-        	System.out.println("Pas de correspondance!");
-        }
+        return list;
     }
+    
+    //Tri
+    public static ObservableList<Tweets> ListeTweets() {
+    	ObservableList <Tweets> list=FXCollections.observableArrayList();
+    	Iterator<Tweets> iter=liste.iterator();
+        while(iter.hasNext())
+        {
+            Tweets t = iter.next();
+            list.add(t);
+        }
+    	return list;
+    }
+    
+    public static ArrayList<String> ListeDate() {
+    	ArrayList<String>  list=new ArrayList<String>();
+    	Iterator<Tweets> iter=liste.iterator();
+        while(iter.hasNext())
+        {
+            Tweets t = iter.next();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            String formattedDateTime = t.getDate().format(formatter);
+            list.add(formattedDateTime);
+        }
+        Set <String> temp=new HashSet<String>(list);
+        ArrayList<String>  list2=new ArrayList<String>(temp);
+    	return list2;
+    }
+    
+    public static ArrayList<String> ListeUtilisateur() {
+    	ArrayList<String>  list=new ArrayList<String>();
+    	Iterator<Tweets> iter=liste.iterator();
+        while(iter.hasNext())
+        {
+            Tweets t = iter.next();
+            list.add(t.getUtilisateur());
+            
+        }
+        Set <String> temp=new HashSet<String>(list);
+        ArrayList<String>  list2=new ArrayList<String>(temp);
+    	return list2;
+    }
+    
+    public static ArrayList<String> ListeRtutilisateur() {
+    	ArrayList<String>  list=new ArrayList<String>();
+    	Iterator<Tweets> iter=liste.iterator();
+        while(iter.hasNext())
+        {
+            Tweets t = iter.next();
+            list.add(t.getRtutilisateur());
+            
+        }
+        Set <String> temp=new HashSet<String>(list);
+        ArrayList<String>  list2=new ArrayList<String>(temp);
+    	return list2;
+    }
+    
+    
     
     //Modalité d'affichage
     public String toString()
@@ -124,8 +214,15 @@ public class BaseDeTweets implements Serializable {
             i++;
         }
         return s;
-    }    
+    }  
+    
+    
+    
+    
 }
+
+
+
 
 
 

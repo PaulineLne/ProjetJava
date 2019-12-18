@@ -57,11 +57,11 @@ public class Tweets implements Comparable<Tweets> {
 		this.texte = texte;
 	}
 
-	public String getrtutilisateur() {
+	public String getRtutilisateur() {
 		return rtutilisateur;
 	}
 
-	public void setrtutilisateur(String rtutilisateur) {
+	public void setRtutilisateur(String rtutilisateur) {
 		this.rtutilisateur = rtutilisateur;
 	}
 
@@ -88,7 +88,7 @@ public class Tweets implements Comparable<Tweets> {
         affich +=  "Nom d'utilisateur : " + getUtilisateur() + "\n";
         affich +=  "Contenu : " + getTexte() + "\n";
         affich +=  "Date : " + formattedDateTime + "\n";
-        affich +=  "Nom de l'utilisateur retweeté : " + getrtutilisateur() + "\n";
+        affich +=  "Nom de l'utilisateur retweeté : " + getRtutilisateur() + "\n";
 
         return affich;	
     }

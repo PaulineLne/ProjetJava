@@ -22,7 +22,7 @@ public class Interface extends Application  {
 	public Scene construireScene() {
 		
 		BorderPane borderPaneRoot = new BorderPane();
-		Scene scene = new Scene(borderPaneRoot, 700, 300);
+		Scene scene = new Scene(borderPaneRoot, 800, 200);
 		
 		// Haut de la fenêtre :
 		HBox hbox1 = new HBox();
@@ -105,7 +105,7 @@ public class Interface extends Application  {
 			//Nouvelle fenêtre pour l'affichage du tableau
             StackPane secondaryLayout = new StackPane();
             secondaryLayout.getChildren().add(table);
-            Scene secondScene = new Scene(secondaryLayout, 1000, 500);
+            Scene secondScene = new Scene(secondaryLayout, 1000, 600);
             Stage newWindow = new Stage();
             newWindow.setTitle("Second Stage");
             newWindow.setScene(secondScene);
@@ -146,7 +146,7 @@ public class Interface extends Application  {
 			//Nouvelle fenêtre pour l'affichage du tableau
             StackPane secondaryLayout = new StackPane();
             secondaryLayout.getChildren().add(table);
-            Scene secondScene = new Scene(secondaryLayout, 500, 500);
+            Scene secondScene = new Scene(secondaryLayout, 1000, 1000);
             Stage newWindow = new Stage();
             newWindow.setTitle("Second Stage");
             newWindow.setScene(secondScene);
@@ -265,7 +265,7 @@ public void start(Stage primaryStage)
 public static void main(String[] args)
 {
 	MesTweets.creationBase();
-	MesTweets.ouvrirBase("test.txt");
+	//MesTweets.ouvrirBase("test.txt");
 	launch(args);
 }
 	

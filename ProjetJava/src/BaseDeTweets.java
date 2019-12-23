@@ -28,7 +28,7 @@ public class BaseDeTweets implements Serializable {
     }
     	
     	//Importation d'un Treeset
-    	@SuppressWarnings("unchecked")
+    	//@SuppressWarnings("unchecked")
 		public void lecture (String nom) {
     		try {
     			FileInputStream r = new FileInputStream(nom);
@@ -37,10 +37,8 @@ public class BaseDeTweets implements Serializable {
     			String ligne;
     			Integer id=0;
     			while((ligne=br.readLine())!=null) {
-    				
     				String[] st=ligne.split("\t");
     				if(st.length==4) {
-						
 						id=id+1;
 						String u=st[1];
 						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
@@ -50,9 +48,16 @@ public class BaseDeTweets implements Serializable {
 							date = LocalDate.parse(st[2], formatter);
 						} catch (DateTimeParseException e) { }
 						String c=st[3];
+						String[] mot=c.split("[ ,?!;.'\"()]+");
+						int nbm = 0;
+						for (String i : mot) {
+							nbm = nbm + 1 ;
+						}
     			        String rt="";
+    			        int nb = nbm;
+    			        // int tfidf = fonction tf-idf (mot,nblignetot - nblignerecherche ,recherche);
     			        
-    			        Tweets t=new Tweets(id,date,u,c,rt);
+    			        Tweets t=new Tweets(id,date,u,c,rt,nb);
     			        
             			liste.add(t);
     				}else {
@@ -66,8 +71,14 @@ public class BaseDeTweets implements Serializable {
 								date = LocalDate.parse(st[2], formatter);
 							} catch (DateTimeParseException e) { }
 							String c=st[3];
-        			        String rt=st[4];
-        			        Tweets t=new Tweets(id,date,u,c,rt);
+							String[] mot=c.split("[ ,?!;.'\"()]+"); 
+							int nbm = 0;
+							for (String i : mot) {
+								nbm = nbm + 1 ;
+							}
+							String rt=st[4];
+	    			        int nb = nbm;
+        			        Tweets t=new Tweets(id,date,u,c,rt,nb);
                 			liste.add(t);
         				}
     				}

@@ -10,19 +10,19 @@ public class Tweets implements Comparable<Tweets> {
     private String texte;
     // la source
     private String rtutilisateur;
+    private Integer NbMot;
     
     //Constructeur
-    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtutilisateur)
+    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtutilisateur, Integer NbMot)
     {
     	this.id=id;
     	this.date=date;
     	this.utilisateur=utilisateur;
 		this.texte=texte;
 		this.rtutilisateur=rtutilisateur;
+		this.NbMot=NbMot;
     }
     
-
-
 	public Integer getId() {
 		return id;
 	}
@@ -38,8 +38,6 @@ public class Tweets implements Comparable<Tweets> {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-
-
 
 	public String getUtilisateur() {
 		return utilisateur;
@@ -63,6 +61,14 @@ public class Tweets implements Comparable<Tweets> {
 
 	public void setRtutilisateur(String rtutilisateur) {
 		this.rtutilisateur = rtutilisateur;
+	}
+	
+	public Integer getNbMot() {
+		return NbMot;
+	}
+	
+	public void setNbMot(Integer NbMot) {
+		this.NbMot = NbMot;
 	}
 
 	//Fonction de comparaison pour le Treeset
@@ -89,6 +95,7 @@ public class Tweets implements Comparable<Tweets> {
         affich +=  "Contenu : " + getTexte() + "\n";
         affich +=  "Date : " + formattedDateTime + "\n";
         affich +=  "Nom de l'utilisateur retweeté : " + getRtutilisateur() + "\n";
+        affich +=  "Nombre de mots : " + getNbMot() + "\n";
 
         return affich;	
     }

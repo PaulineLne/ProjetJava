@@ -47,27 +47,30 @@ public class MesTweets {
        collec.recherche(recherche,id);
     }
     
-    public static TableView<Tweets> fenetre (String recherche,Integer nb) {
+    @SuppressWarnings("unchecked")
+	public static TableView<Tweets> fenetre (String recherche,Integer nb) {
     	TableView<Tweets> table=new TableView<Tweets>();
     	//TableColumn<Tweets,Integer> id = new TableColumn<Tweets,Integer>("Numéro de tweet");
 		TableColumn<Tweets,String> utilisateur = new TableColumn<Tweets,String>("Nom d'utilisateur");
 		TableColumn<Tweets,LocalDate> date = new TableColumn<Tweets,LocalDate>("Date");
 		TableColumn<Tweets,String> texte = new TableColumn<Tweets,String>("Contenu");
 		TableColumn<Tweets,String> rtutilisateur = new TableColumn<Tweets,String>("Nom de l'utilisateur retweeté");
-		
+		TableColumn<Tweets,Integer> NbMot = new TableColumn<Tweets,Integer>("Nombre de mots");
+
 		//id.setCellValueFactory(new PropertyValueFactory<>("id"));
 		utilisateur.setCellValueFactory(new PropertyValueFactory<>("utilisateur"));
 		date.setCellValueFactory(new PropertyValueFactory<>("date"));
 		texte.setCellValueFactory(new PropertyValueFactory<>("texte"));
 		rtutilisateur.setCellValueFactory(new PropertyValueFactory<>("rtutilisateur"));
-		
+		NbMot.setCellValueFactory(new PropertyValueFactory<>("NbMot"));
+
 		//Récupération des résultats de la recherche
 		
 		ObservableList<Tweets> list=BaseDeTweets.recherche(recherche,nb);
 		table.setItems(list);
 		
 		//Insertion des résultats dans le tableau
-		table.getColumns().addAll(/*id;*/utilisateur,date,texte,rtutilisateur);
+		table.getColumns().addAll(/*id;*/utilisateur,date,texte,rtutilisateur,NbMot);
 		return table;
     }
     

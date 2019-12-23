@@ -1,4 +1,4 @@
-
+//trouver sur internet à adapter
 public class Normalisation {
 
 	private static tfidfCalcultor calculator;

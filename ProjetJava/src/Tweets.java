@@ -1,33 +1,35 @@
 import java.time.LocalDate;
-
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Tweets implements Comparable<Tweets> {
+	
+	//Composant d'un tweets
 	private Integer id;
-    // date de publication
     private LocalDate date;
     private String utilisateur;
-    // l'auteur si disponible
     private String texte;
-    // la source
     private String rtutilisateur;
-    private Integer NbMot;
+    private ArrayList<String> Mots; //Liste des mots du tweets
+    private double poids; //Poids du tweet (Normalisation)
+    private Integer classe; //Classe du tweet (K-Means)
     
     //Constructeur
-    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtutilisateur, Integer NbMot)
+    public Tweets(Integer id,LocalDate date,String utilisateur,String texte, String rtutilisateur,ArrayList<String> Mots,double poids,Integer classe)
     {
     	this.id=id;
     	this.date=date;
     	this.utilisateur=utilisateur;
 		this.texte=texte;
 		this.rtutilisateur=rtutilisateur;
-		this.NbMot=NbMot;
+		this.Mots=Mots;
+		this.poids=poids;
+		this.classe=classe;
     }
     
+    //Getter et Setter
 	public Integer getId() {
 		return id;
 	}
-	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -35,7 +37,6 @@ public class Tweets implements Comparable<Tweets> {
 	public LocalDate getDate() {
 		return date;
 	}
-
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
@@ -43,7 +44,6 @@ public class Tweets implements Comparable<Tweets> {
 	public String getUtilisateur() {
 		return utilisateur;
 	}
-
 	public void setUtilisateur(String utilisateur) {
 		this.utilisateur = utilisateur;
 	}
@@ -51,7 +51,6 @@ public class Tweets implements Comparable<Tweets> {
 	public String getTexte() {
 		return texte;
 	}
-
 	public void setTexte(String texte) {
 		this.texte = texte;
 	}
@@ -59,46 +58,42 @@ public class Tweets implements Comparable<Tweets> {
 	public String getRtutilisateur() {
 		return rtutilisateur;
 	}
-
 	public void setRtutilisateur(String rtutilisateur) {
 		this.rtutilisateur = rtutilisateur;
 	}
 	
-	public Integer getNbMot() {
-		return NbMot;
+	public ArrayList<String> getMots() {
+		return Mots;
+	}
+	public void setMots(ArrayList<String> Mots) {
+		this.Mots = Mots;
 	}
 	
-	public void setNbMot(Integer NbMot) {
-		this.NbMot = NbMot;
+	public double getPoids() {
+		return poids;
+	}
+	public void setPoids(double poids) {
+		this.poids=poids;
 	}
 
+	public Integer getClasse() {
+		return classe;
+	}
+	public void setClasse(Integer classe) {
+		this.classe=classe;
+	}
+	
 	//Fonction de comparaison pour le Treeset
-    public int compareTo(Tweets arg0) {
-            // On transtype arg0 (de type Object) en Film :
-            Tweets n = (Tweets)arg0;
+    public int compareTo(Tweets n) {
 
-            if (getId().compareTo(n.getId())<0) return -1;
-            else if (getId().compareTo(n.getId())>0) return 1;
+            if (getUtilisateur().compareTo(n.getUtilisateur())<0) return -1;
+            else if (getUtilisateur().compareTo(n.getUtilisateur())>0) return 1;
             else
                     if (getDate().compareTo(n.getDate())<0) return -1;
                     else if (getDate().compareTo(n.getDate())>0) return 1;
                     else return 0;
     }
 
-    //Modalité d'affichage
-    public String toString() {
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedDateTime = getDate().format(formatter);
-        
-        String affich = "Numéro de tweet : "+ getId() + "\n";
-        affich +=  "Nom d'utilisateur : " + getUtilisateur() + "\n";
-        affich +=  "Contenu : " + getTexte() + "\n";
-        affich +=  "Date : " + formattedDateTime + "\n";
-        affich +=  "Nom de l'utilisateur retweeté : " + getRtutilisateur() + "\n";
-        affich +=  "Nombre de mots : " + getNbMot() + "\n";
-
-        return affich;	
-    }
+    
      
 }
